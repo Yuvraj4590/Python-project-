@@ -1,0 +1,105 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": 6,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "S8Dt6IQ-66pr",
+        "outputId": "711fb6b9-f18c-47e7-dba9-735a3df32c66"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "What's your age? 30\n",
+            "Please choose time unit: Years, Months, Weeks, Days, Hours, Minutes, Seconds. \"Seconds\",\n",
+            "Invalid time unit selected.\n"
+          ]
+        }
+      ],
+      "source": [
+        "from datetime import datetime, timedelta\n",
+        "\n",
+        "def calculate_lived_duration(age, time_unit):\n",
+        "    # Calculate the start date (current date minus age)\n",
+        "    current_date = datetime.now()\n",
+        "    birth_date = current_date - timedelta(days=age*365)  # Approximating age in days\n",
+        "\n",
+        "    # Calculate the duration between birth_date and current_date\n",
+        "    duration = current_date - birth_date\n",
+        "\n",
+        "    # Calculate duration in different time units\n",
+        "    total_seconds = duration.total_seconds()\n",
+        "    years = age\n",
+        "    months = years * 12\n",
+        "    weeks = duration.days // 7\n",
+        "    days = duration.days\n",
+        "    hours = total_seconds // 3600\n",
+        "    minutes = total_seconds // 60\n",
+        "    seconds = total_seconds\n",
+        "\n",
+        "    # Prepare the result based on user's choice of time unit\n",
+        "    if time_unit.lower() == 'years':\n",
+        "        result = years\n",
+        "    elif time_unit.lower() == 'months':\n",
+        "        result = months\n",
+        "    elif time_unit.lower() == 'weeks':\n",
+        "        result = weeks\n",
+        "    elif time_unit.lower() == 'days':\n",
+        "        result = days\n",
+        "    elif time_unit.lower() == 'hours':\n",
+        "        result = hours\n",
+        "    elif time_unit.lower() == 'minutes':\n",
+        "        result = minutes\n",
+        "    elif time_unit.lower() == 'seconds':\n",
+        "        result = seconds\n",
+        "    else:\n",
+        "        result = None\n",
+        "\n",
+        "    return result\n",
+        "\n",
+        "# Example usage:\n",
+        "if __name__ == \"__main__\":\n",
+        "    # Ask for user input\n",
+        "    age = int(input(\"What's your age? \"))\n",
+        "    time_unit = input(\"Please choose time unit: Years, Months, Weeks, Days, Hours, Minutes, Seconds. \")\n",
+        "\n",
+        "    # Calculate lived duration\n",
+        "    lived_duration = calculate_lived_duration(age, time_unit)\n",
+        "\n",
+        "    # Print the result\n",
+        "    if lived_duration is not None:\n",
+        "        print(f\"You have lived for approximately {lived_duration} {time_unit.lower()}.\")\n",
+        "    else:\n",
+        "        print(\"Invalid time unit selected.\")\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "6n4O1qL9-TWP"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
